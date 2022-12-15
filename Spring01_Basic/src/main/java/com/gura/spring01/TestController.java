@@ -28,6 +28,9 @@ public class TestController {
 	@ResponseBody
 	@RequestMapping("di/down")
 	public String diDown() {
+		
+		service.down();
+		
 		return "down ok!";
 	}
 	
