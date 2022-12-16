@@ -14,11 +14,15 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Autowired
 	private SqlSession session; // select, insert, update, delete 작업을 하기 위한 핵심 의존 객체
-	
+						// 위의 session 은 sqlSessionTemplate 과도 같다.
 	@Override
 	public void insert(MemberDto dto) {
-		// TODO Auto-generated method stub
-		
+		/*
+		 * 	mapper's namespace => member
+		 * 	sql's id => insert
+		 * 	parameterType => MemberDto 
+		 */
+		session.insert("member.insert", dto);
 		
 	}
 
