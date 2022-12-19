@@ -89,6 +89,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 어떤 패키지를 component scan 할지에 대한 설정, 패키지는 자동으로 포함된다. -->
 	<context:component-scan base-package="com.gura.spring02" />
 	
 	
