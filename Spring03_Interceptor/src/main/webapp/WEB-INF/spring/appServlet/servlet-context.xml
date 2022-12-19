@@ -26,6 +26,8 @@
 	
 	<beans:bean id="loginInterceptor" class="com.gura.spring03.interceptor.LoginInterceptor" />
 	
+	
+	
 	<!-- 인터셉터 목록 -->
 	<interceptors>
 		<!-- myInterceptor 가 /play 요청에 대해 끼어 들도록 설정한다. -->
@@ -40,6 +42,15 @@
 			<!-- exclude-mapping 은 배제할 경로 -->
 			<exclude-mapping path="/users/loginform"/>
 			<exclude-mapping path="/users/login"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- 또 다른 경로에 대해서 mapping 하고 싶다면 interceptor 설정을 하나 추가한다. -->
+		<!-- /file/하위의 모든 요청에 대해 loginInterceptor 가 끼어들도록 설정한다. -->
+		<interceptor>
+			<!-- 모든 경로에 대한 요청 -->
+			<mapping path="/file/*"/>
+			<!-- exclude-mapping 은 배제할 경로 -->
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
