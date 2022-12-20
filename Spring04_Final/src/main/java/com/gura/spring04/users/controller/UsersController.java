@@ -64,6 +64,7 @@ public class UsersController {
 		return mView;
 	}
 	
+	// 로그아웃 요청 처리
 	@RequestMapping("/users/logout")
 	public String logout(HttpSession session) {
 		// 세션에서 id 라는 키 값으로 저장된 값 삭제
@@ -71,5 +72,14 @@ public class UsersController {
 		return "users/logout";
 	}
 	
+	// 개인 정보 보기 요청 처리
+	@RequestMapping
+	public ModelAndView info(HttpSession session, ModelAndView mView) {
+		
+		service.getInfo(session, mView);
+		
+		mView.setViewName("users/info");
+		return mView;
+	}
 	
 }
