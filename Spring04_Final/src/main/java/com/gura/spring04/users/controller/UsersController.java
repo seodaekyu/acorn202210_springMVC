@@ -28,6 +28,7 @@ public class UsersController {
 		
 		return "users/signup_form";
 	}
+	
 	// 회원가입 요청 처리
 	@RequestMapping(method = RequestMethod.POST, value = "/users/signup" )
 	public ModelAndView signup(ModelAndView mView, UsersDto dto) {
@@ -35,12 +36,14 @@ public class UsersController {
 		mView.setViewName("users/signup");
 		return mView;
 	}
+	
 	// 로그인 폼 요청 처리
 	@RequestMapping(method = RequestMethod.GET, value = "/users/loginform")
 	public String loginForm() {
 		
 		return "users/loginform";
 	}
+	
 	// 로그인 요청 처리
 	@RequestMapping("/users/login")
 	public ModelAndView login(ModelAndView mView, UsersDto dto, String url, HttpSession session) {
@@ -60,4 +63,13 @@ public class UsersController {
 		mView.setViewName("users/login");
 		return mView;
 	}
+	
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		// 세션에서 id 라는 키 값으로 저장된 값 삭제
+		session.removeAttribute("id");
+		return "users/logout";
+	}
+	
+	
 }
