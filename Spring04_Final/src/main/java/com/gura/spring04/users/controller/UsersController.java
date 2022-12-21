@@ -1,6 +1,7 @@
 package com.gura.spring04.users.controller;
 
 import java.net.URLEncoder;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring04.users.dto.UsersDto;
@@ -74,7 +77,7 @@ public class UsersController {
 	}
 	
 	// 개인정보 보기 요청 처리
-	@RequestMapping
+	@RequestMapping("/users/info")
 	public ModelAndView info(HttpSession session, ModelAndView mView) {
 		
 		service.getInfo(session, mView);
@@ -116,14 +119,6 @@ public class UsersController {
 		return mView;
 	}
 	
-	// 회원정보 수정 요청 처리
-	@RequestMapping("/users/update")
-	public ModelAndView update(UsersDto dto, ModelAndView mView, HttpSession session) {
-		service.updateUser(dto, session);
-		mView.setViewName("users/update");
-		return mView;
-	}
-	
 	// 개인정보 수정 반영 요청 처리
 	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
 	public ModelAndView update(UsersDto dto, HttpSession session, ModelAndView mView,
@@ -133,5 +128,14 @@ public class UsersController {
 		mView.setViewName("redirect:/users/info");
 		// 개인정보 보기로 리다이렉트 이동시킨다.
 		return mView;
+	}
+	
+	//ajax 프로필 사진 업로드 요청처리
+	@RequestMapping(value = "/users/profile_upload", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> profileUpload(HttpServletRequest request, MultipartFile image){
+
+		//서비스를 이용해서 이미지를 upload 폴더에 저장하고 리턴되는 Map 을 리턴해서 json 문자열 응답하기
+		return service.saveProfileImage(request, image);
 	}
 }
