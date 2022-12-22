@@ -44,4 +44,10 @@ public class FileController {
 		return mView;
 	}
 	
+	@RequestMapping("/file/delete")
+	public ModelAndView delete(int num, ModelAndView mView, HttpServletRequest request) {
+		service.deleteFile(num, request);
+		mView.setViewName("redirect:/file/list");
+		return mView;
+	}
 }
