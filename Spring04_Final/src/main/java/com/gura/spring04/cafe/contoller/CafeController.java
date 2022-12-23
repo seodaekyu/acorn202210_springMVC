@@ -50,11 +50,11 @@ public class CafeController {
 	}
 	
 	@RequestMapping("/cafe/delete")
-	public String delete(CafeDto dto, HttpServletRequest request) {
+	public String delete(int num, HttpServletRequest request) {
 		
-		service.deleteContent(dto.getNum(), request);
+		service.deleteContent(num, request);
 		
-		return "cafe/delete";
+		return "redirect:/cafe/list";
 	}
 	
 	@RequestMapping("/cafe/update")
