@@ -16,7 +16,7 @@
       <table class="table table-striped">
          <thead class="table-dark">
             <tr>
-               <th>글번호</th>
+               <th>번호</th>
                <th>작성자</th>
                <th>제목</th>
                <th>조회수</th>
@@ -29,7 +29,7 @@
                   <td>${tmp.num }</td>
                   <td>${tmp.writer }</td>
                   <td>
-                     <a href="detail?num=${tmp.num }">${tmp.title }</a>
+                     <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
                   </td>
                   <td>${tmp.viewCount }</td>
                   <td>${tmp.regdate }</td>

@@ -43,6 +43,13 @@ public class CafeDaoImpl implements CafeDao{
 		
 		return session.selectOne("cafe.getData", num);
 	}
+	
+	@Override
+	public CafeDto getData(CafeDto dto) {
+		
+		return session.selectOne("cafe.getData2", dto);
+	}
+	
 	// 조회수를 올리는 메소드
 	@Override
 	public void addViewCount(int num) {
@@ -61,5 +68,6 @@ public class CafeDaoImpl implements CafeDao{
 		session.update("cafe.update", dto);
 		
 	}
+
 
 }

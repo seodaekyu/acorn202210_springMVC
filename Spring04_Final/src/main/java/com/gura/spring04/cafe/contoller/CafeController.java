@@ -40,4 +40,31 @@ public class CafeController {
 		service.saveContent(dto);
 		return "cafe/insert";
 	}
+	
+	@RequestMapping("/cafe/detail")
+	public String detail(HttpServletRequest request) {
+		
+		service.getDetail(request);
+		
+		return "cafe/detail";
+	}
+	
+	@RequestMapping("/cafe/delete")
+	public String delete(CafeDto dto, HttpServletRequest request) {
+		
+		service.deleteContent(dto.getNum(), request);
+		
+		return "cafe/delete";
+	}
+	
+	@RequestMapping("/cafe/update")
+	public String update(CafeDto dto) {
+		service.updateContent(dto);
+		return "cafe/update";
+	}
+	
+	@RequestMapping("/cafe/updateform")
+	public String updateForm() {
+		return "cafe/updateform";
+	}
 }
