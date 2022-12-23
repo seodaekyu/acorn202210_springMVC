@@ -64,7 +64,8 @@ public class CafeController {
 	}
 	
 	@RequestMapping("/cafe/updateform")
-	public String updateForm() {
+	public String updateForm(HttpServletRequest request) {
+		service.getData(request);
 		return "cafe/updateform";
 	}
 }

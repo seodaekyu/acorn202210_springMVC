@@ -111,7 +111,8 @@ public class CafeServiceImpl implements CafeService{
 		// 자세히 보여줄 글 번호를 읽어온다.
 		int num = Integer.parseInt(request.getParameter("num"));
 		// 조회수 올리기
-		cafeDao.getData(num);
+		cafeDao.addViewCount(num);
+		
      /*
         [ 검색 키워드에 관련된 처리 ]
         - 검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.      
@@ -183,8 +184,12 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void getData(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+		// 수정할 글 번호
+		int num = Integer.parseInt(request.getParameter("num"));
+		// 수정할 글의 정보를 얻어와서
+		CafeDto dto = cafeDao.getData(num);
+		// request 에 담아준다.
+		request.setAttribute("dto", dto);
 	}
 
 }
