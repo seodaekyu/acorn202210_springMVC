@@ -30,6 +30,7 @@
 			<li><a href="get_friends">친구 목록</a></li>
 			<li><a href="get_users">회원 목록</a></li>
 			<li><a href="file/list">자료실 목록</a></li>
+			<li><a href="cafe/list">글 목록</a></li>
 		</ul>
 		<h3>공지사항 입니다.</h3>
 		<ul>

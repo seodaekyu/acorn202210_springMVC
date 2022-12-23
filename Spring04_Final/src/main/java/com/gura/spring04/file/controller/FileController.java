@@ -17,7 +17,7 @@ public class FileController {
 	private FileService service;
 	
 	@RequestMapping("/file/list")
-	public  String list (HttpServletRequest request) {
+	public String list (HttpServletRequest request) {
 		service.getList(request);
 		
 		return "file/list";
