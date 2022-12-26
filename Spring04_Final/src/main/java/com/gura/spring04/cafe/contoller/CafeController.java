@@ -81,12 +81,12 @@ public class CafeController {
        service.saveComment(request);
    
        return "redirect:/cafe/detail?num="+ref_group;
-   }
+    }
     // 댓글 더보기 요청 처리
     @RequestMapping("/cafe/ajax_comment_list")
     public String commentList(HttpServletRequest request) {
       
-    	//테스트를 위해 시간 지연 시키기
+    	// 테스트를 위해 시간 지연 시키기
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -96,7 +96,7 @@ public class CafeController {
     	service.moreCommentList(request);
       
     	return "cafe/ajax_comment_list";
-   }
+    }
     // 댓글 삭제 요청 처리
     @RequestMapping("/cafe/comment_delete")
     @ResponseBody
@@ -106,7 +106,7 @@ public class CafeController {
        map.put("isSuccess", true);
        // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
        return map;
-   }
+    }
     // 댓글 수정 요청처리 (JSON 을 응답하도록 한다)
     @RequestMapping("/cafe/comment_update")
     @ResponseBody
@@ -116,5 +116,5 @@ public class CafeController {
        map.put("isSuccess", true);
        // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
        return map;
-   }
+    }
 }
