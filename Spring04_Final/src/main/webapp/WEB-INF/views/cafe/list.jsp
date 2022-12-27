@@ -12,6 +12,8 @@
 <body>
    <div class="container">
       <a href="${pageContext.request.contextPath }/cafe/insertform">새글 작성</a>
+      <br />
+      <a href="${pageContext.request.contextPath}/">인덱스로</a>
       <h3>카페 글 목록 입니다.</h3>
       <table class="table table-striped">
          <thead class="table-dark">
