@@ -20,7 +20,6 @@ import com.gura.boot06.MyInterceptor;
  */
 
 @Configuration
-@EnableWebMvc // Spring 이 자동 설정해주는 모든 기능을 사용하기 위해서 붙여주어야 한다.
 public class WebConfig implements WebMvcConfigurer{
 	
 	/*
@@ -55,9 +54,9 @@ public class WebConfig implements WebMvcConfigurer{
 	}
 	
 	// view page 의 prefix 와 suffix 설정
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/views/", ".jsp");
-	}
+//	@Override
+//	public void configureViewResolvers(ViewResolverRegistry registry) {
+//		registry.jsp("/WEB-INF/views/", ".jsp");
+//	}
 	
 }
