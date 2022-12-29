@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<h1>인덱스 페이지 입니다.</h1>
-		<%-- Spring Boot 에서 추가된 static ㅍㄹ더에 있는 자원 사용하기 --%>
+		<%-- Spring Boot 에서 추가된 static 폴더에 있는 자원 사용하기 --%>
 		<img src="${pageContext.request.contextPath}/images/bottle.png" />
 		<%-- 
 			Resources Handler 설정으로 추가한 resources 폴더에 있는 자원 사용하기
