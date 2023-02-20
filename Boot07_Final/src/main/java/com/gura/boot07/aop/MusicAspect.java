@@ -48,6 +48,8 @@ public class MusicAspect {
 		// 로그인된 아이디
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		System.out.println("writer:"+writer);
+		System.out.println("id:"+id);
 		// 만일 mp3 파일의 소유자와 로그인된 아이디가 다르다면
 		if(!writer.equals(id)) { // java 에서 문자열 비교할땐 메소드 써야함
 			// 예외를 발생시켜서 ExceptionController 에서 처리되도록 한다.
