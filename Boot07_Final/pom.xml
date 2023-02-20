@@ -72,6 +72,25 @@
 		    <artifactId>spring-boot-starter-tomcat</artifactId>
 		    <scope>provided</scope>
 		</dependency>
+		
+		<!-- mp3 파일에서 Meta Data 를 추출하기 위한 dependency  -->
+		<dependency>
+		    <groupId>org</groupId>
+		    <artifactId>jaudiotagger</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		
+		<!-- AOP 용 추가 라이브러리 -->
+		<dependency>
+	         <groupId>org.aspectj</groupId>
+	         <artifactId>aspectjweaver</artifactId>
+	         <version>1.8.0</version>
+	    </dependency>
+	    <dependency>
+	         <groupId>cglib</groupId>
+	         <artifactId>cglib</artifactId>
+	         <version>3.2.0</version>
+	    </dependency> 
         
 	</dependencies>
 

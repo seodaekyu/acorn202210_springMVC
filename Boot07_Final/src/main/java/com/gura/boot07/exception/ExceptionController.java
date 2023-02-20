@@ -1,6 +1,8 @@
 package com.gura.boot07.exception;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class ExceptionController {
 	
+	@ExceptionHandler(ForbiddenException.class)
+	public ResponseEntity<String> forbidden(ForbiddenException Fe) {
+		// 403 에러를 발생시키기 위한 ResponseEntity 객체를 생성해서
+		ResponseEntity re = new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		// 리턴하면 에러가 응답된다.
+		return re;
+	}
+	  
 	// spring framework 가 동작하는 중에 NotDeleteException type 의
 	// 예외가 발생하면 호출하는 메소드
 	@ExceptionHandler(NotDeleteException.class)
