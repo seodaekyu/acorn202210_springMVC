@@ -1,11 +1,13 @@
 package com.gura.boot07.gallery.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,5 +91,16 @@ public class GalleryController {
 
 		return mView;
 	}
-
+	// 안드로이드 앱에서 사진을 업로드하는 요청을 처리하는 메소드
+	@PostMapping("/api/gallery/insert")
+	@ResponseBody
+	public Map<String, Object> apiInsert(GalleryDto dto, HttpServletRequest request) {
+		/*
+		 * 	GalleryDto 에 담긴 내용을 활용해서 이미지를 파일시스템에 저장하고 이미지 정보를 DB 에도 저장한다.
+		 */
+		service.saveImage(dto, request);
+		Map<String, Object> map = new HashMap<>();
+		map.put("isSuccess", "true");
+		return map;
+	}
 }
