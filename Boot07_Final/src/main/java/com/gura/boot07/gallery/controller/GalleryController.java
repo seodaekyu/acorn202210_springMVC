@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -111,9 +114,28 @@ public class GalleryController {
 	
 	@GetMapping("/api/gallery/list")
 	@ResponseBody
-	public List<GalleryDto> apiList() {
+	public List<GalleryDto> apiList(HttpSession session, HttpServletResponse response,
+			HttpServletRequest request) {
+		
+		System.out.println(session.getId());
+
+		Cookie[] cooks=request.getCookies();
+		for(Cookie tmp : cooks) {
+			System.out.println(tmp.getName()+":"+tmp.getValue());
+		}
+
+		Cookie cook1=new Cookie("name", "kimgura");
+		response.addCookie(cook1);
 		
 		return dao.getListAll();
 	}
 	
+	@PostMapping("/api/gallery/delete")
+	@ResponseBody
+	public Map<String, Object> apiDelete(HttpServletRequest request, int num) {
+		service.deleteGallery(request, num);
+		Map<String, Object> map = new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
+	}
 }

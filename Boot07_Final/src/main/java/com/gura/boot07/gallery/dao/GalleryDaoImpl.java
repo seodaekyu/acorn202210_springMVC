@@ -69,4 +69,9 @@ public class GalleryDaoImpl implements GalleryDao {
 		return session.selectList("gallery.getListAll");
 	}
 
+	@Override
+	public void delete(int num) {
+		session.delete("gallery.delete", num);
+	}
+
 }

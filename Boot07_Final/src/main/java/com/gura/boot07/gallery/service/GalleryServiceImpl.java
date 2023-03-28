@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -96,8 +97,12 @@ public class GalleryServiceImpl implements GalleryService {
 			upload.mkdir();//폴더 생성
 		}
 		//저장할 파일의 이름을 구성한다. -> 우리가 직접 구성해줘야한다.
-		String saveFileName = System.currentTimeMillis() + orgFileName;
-
+		//String saveFileName = System.currentTimeMillis() + orgFileName;
+		
+		//파일명이 겹치지 않도록 무작위의 UUID 문자열을 얻어내서 저장할 파일명으로 사용한다. 
+		String randomId=UUID.randomUUID().toString();
+		String saveFileName = randomId+".mp3"; 
+		
 		try {
 			//upload 폴더에 파일을 저장한다.
 			image.transferTo(new File(filePath + saveFileName));
@@ -177,5 +182,21 @@ public class GalleryServiceImpl implements GalleryService {
 		GalleryDto dto = dao.getData(num);
 		//ModelAndView 에 가져온 GalleryDto 를 담는다.
 		mView.addObject("dto", dto);
+	}
+
+	@Override
+	public void deleteGallery(HttpServletRequest request, int num) {
+		// 삭제할 Gallery 사진 정보를 읽어와서
+		GalleryDto dto = dao.getData(num);
+		// DB에서 삭제
+		dao.delete(num);
+		// webapp 까지의 실제 경로
+		String realPath = request.getServletContext().getRealPath("/");
+		// webapp 까지의 실제 경로 + /resources/upload/xxx.jpg 
+		String imagePath = realPath+dto.getImagePath();
+		// 삭제할 File 객체 생성
+		File file = new File(imagePath);
+		// 파일 삭제
+		file.delete();
 	}
 }
